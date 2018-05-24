@@ -1,0 +1,32 @@
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#">
+      <b>Ger</b>Lab</a>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body card-primary card-outline">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <form action="../../index2.html" #form="ngForm" (ngSubmit)="login()">
+        <div class="alert alert-error" role="alert" *ngIf="message">
+          <strong>Invalid email or password</strong>
+        </div>
+        <div class="form-group has-feedback" [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
+          <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="inputEmail" #email="ngModel" placeholder="Email"
+            email>
+          <span class="help-block" *ngIf="email.invalid  && email.dirty">Email is invalid </span>
+        </div>
+        <div class="form-group has-feedback" [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
+          <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="inputPassword" placeholder="Password"
+            #password="ngModel" required>
+          <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

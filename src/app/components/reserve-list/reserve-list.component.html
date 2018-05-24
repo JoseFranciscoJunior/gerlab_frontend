@@ -1,0 +1,45 @@
+<div [ngClass]="classCss" role="alert" *ngIf="message">
+  <strong>{{ message.text }}</strong>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Reserve List</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <tr>
+            <th>Email</th>
+            <th>Profile</th>
+            <th style="width: 10px">&nbsp;</th>
+            <th style="width: 10px">&nbsp;</th>
+          </tr>
+          <tr *ngFor="let reserve of listReserve">
+            <td>{{reserve.email}}</td>
+            <td>{{reserve.profile}}</td>
+            <td>
+              <button class="btn btn-primary" (click)="edit(reserve.id)">Edit</button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="delete(reserve.id)">Delete</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-footer clearfix">
+        <ul class="pagination pagination-sm m-0 float-right">
+          <li class="page-item">
+            <a class="page-link" href="" (click)="setPreviousPage($event)">&laquo;</a>
+          </li>
+          <li class="page-item" *ngFor="let p of pages; let i=index">
+            <a class="page-link" [ngClass]="{'pagination-focus':i==page}" href="" (click)="setPage(i,$event)">{{i+1}}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="" (click)="setNextPage($event)">&raquo;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
